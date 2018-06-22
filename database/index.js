@@ -18,7 +18,8 @@ var user = mongoose.Schema({
 
 var task = mongoose.Schema({
 	taskName : {type : String , required : true},
-	complete : {type : Boolean }
+	complete : {type : Boolean },
+	username : {type : String }
 })
 
 var User = mongoose.model('User', user);
