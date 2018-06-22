@@ -9,3 +9,14 @@ db.on('error', function () {
 db.once('open', function () {
   console.log('mongoose connected successfully')
 }) 
+
+var user = mongoose.Schema({
+  userName: { type : String, required : true , unique : true},
+  email:{ type : String, required : true },
+  passWord: { type : String, required : true },
+});
+
+
+var User = mongoose.model('User', user);
+
+module.exports.User = User
