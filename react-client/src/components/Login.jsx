@@ -1,4 +1,6 @@
 import React from 'react'
+import axios from 'axios'
+
 class Login extends React.Component {
   constructor (props) {
     super(props)
@@ -36,7 +38,7 @@ render(){
 		/> 
 		<br />
 		<button onClick={
-			()=>login(this.state.username , this.state.password)
+			()=>this.login(this.state.username , this.state.password)
 		}>Login</button>
 		</div>
 		)

@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, '../react-client/dist')))
 app.use(bodyParser.json());
 
 
-app.post('/login' , function (req , res) {
+app.post('/signup' , function (req , res) {
   var username = req.body.username; 
   var password = req.body.password; 
   var email = req.body.email; 
@@ -29,6 +29,29 @@ app.post('/login' , function (req , res) {
  			})
   		}
   })
+})
+
+app.post('/login' , function (req , res) {
+	var username = req.body.username;
+	var password = req.body.password;
+
+	db.User.findOne({
+		username : username
+	},function (err , data) {
+		if (err){
+			throw err ;
+		}else{
+			if(!data){
+				res.sendStatus(404);
+			}else{
+				if(password === data.password){
+				console.log("done" , data);
+				}else{
+					res.sendStatus(404);
+				}
+			}
+		}
+	})
 })
 
 app.get('/*', (req, res) => {
