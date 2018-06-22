@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, '../react-client/dist')))
 app.use(bodyParser.json());
 
 
-app.post('/signup' , function (req , res) {
+app.post('/login' , function (req , res) {
   var username = req.body.username; 
   var password = req.body.password; 
   var email = req.body.email; 
