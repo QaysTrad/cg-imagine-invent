@@ -55,6 +55,32 @@ app.post('/login' , function (req , res) {
 	})
 })
 
+app.post('/addTask' , function (req , res) {
+	var taskName = req.body.taskName;
+	var complete = req.body.complete;
+
+	var task = new db.Task({
+		taskName : taskName ,
+		complete : complete
+	})
+	task.save(function (err , data) {
+		if(err){
+			throw err;
+		}else{
+			res.sendStatus(201);
+		}
+	})
+})
+
+app.get('/tasks',function (req , res) {
+	db.Task.find({} , function (err , data) {
+		if (err){
+			throw err;
+		}else{
+			res.send(data)
+		}
+	})
+})
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
 }) 
