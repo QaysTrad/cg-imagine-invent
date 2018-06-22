@@ -49,7 +49,7 @@ render(){
 		<br />
 		<button onClick={  
 			() => this.submit(this.state.username, this.state.email, this.state.password)
-           }>Submit</button>
+           }>Signup</button>
 		</div>
 
 		)
