@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import AppRoute from './components/AppRoute.jsx'
 
 class App extends React.Component {
   constructor (props) {
@@ -11,7 +12,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <h1>Hello Me</h1>
+        <AppRoute />
       </div>)
   }
 }
