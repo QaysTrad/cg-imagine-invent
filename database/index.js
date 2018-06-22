@@ -16,7 +16,13 @@ var user = mongoose.Schema({
   password: { type : String, required : true },
 });
 
+var task = mongoose.Schema({
+	taskname : {type : String , required : true},
+	complete : {type : Boolean }
+})
 
 var User = mongoose.model('User', user);
+var Task = mongoose.model('Task', task);
 
 module.exports.User = User
+module.exports.Task = Task
