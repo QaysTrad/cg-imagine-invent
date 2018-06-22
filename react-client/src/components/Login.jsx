@@ -14,8 +14,8 @@ class Login extends React.Component {
       [e.target.name]: e.target.value
     })
   };
-	login(username , email , password){
-		axios.post('signup' , {username:username , 
+	login(username , password){
+		axios.post('login' , {username:username , 
 			password:password})
 		.then(function (res) {
 			console.log(res)
