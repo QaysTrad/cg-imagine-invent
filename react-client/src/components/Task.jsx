@@ -5,7 +5,8 @@ class Task extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			taskName:'' 
+			taskName:'' ,
+			tasks:''
 		}
 		this.onChange = this.onChange.bind(this);
 		this.addTask = this.addTask.bind(this);
@@ -16,10 +17,20 @@ class Task extends React.Component {
     })
 	}
 	addTask(taskName){
-		axios.post('addTask' , {taskName : taskName})
+		axios.post('addTask' , {
+			taskName : taskName,
+			complete : false
+		})
 		.then(function (res) {
 			console.log(res)
 		})
+	}
+	 componentDidMount () { 
+	  axios.get('/tasks')
+	  .then(function(res){
+	  	console.log(res)
+	  })
+
 	}
 	render(){
 		return(
