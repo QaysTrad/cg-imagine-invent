@@ -1,5 +1,5 @@
 import React from 'react'
-class Home extends React.Component {
+class Signup extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -7,12 +7,11 @@ class Home extends React.Component {
 render(){
 	return (
 		<div>
-		<button>signup</button>
-		<button>login</button>
+		<h1>Signup</h1>
 		</div>
 
 		)
 }
 }
 
-export default Home
+export default Signup
