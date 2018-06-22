@@ -23,15 +23,18 @@ class Task extends React.Component {
 		})
 		.then(function (res) {
 			console.log(res)
-		})
+		}).catch(function (err) {
+        console.log(err)
+      })
 	}
 	 componentDidMount () { 
+	 	var x = this
 	  axios.get('/tasks')
 	  .then(function(res){
-	  	console.log(res)
+	  	x.setState({tasks : res.data})
 	  })
-
 	}
+
 	render(){
 		return(
 			<div>
@@ -43,7 +46,21 @@ class Task extends React.Component {
 			<button onClick={
 				()=> this.addTask(this.state.taskName)
 			}>Add</button>
+			<div>
+			{this.state.tasks === '' ?(
+				<div>
+				<h2>Loding... </h2>
+				</div>
 
+				)
+			: this.state.tasks.map(item =>
+				<div key={item._id}>
+				<h3>{item.taskName} </h3>
+				<h3>{item.complete} </h3>
+				</div>
+			)
+		}
+			</div>
 			</div>
 			)
 	}
