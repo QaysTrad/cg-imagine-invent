@@ -1,5 +1,6 @@
 let express = require('express') 
 let path = require('path') 
+let db = require('../database/index') 
 
 const app = express() 
 
