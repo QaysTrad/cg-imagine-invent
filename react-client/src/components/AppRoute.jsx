@@ -4,6 +4,7 @@ import { BrowserRouter, Route, hashHistory, Switch } from 'react-router-dom'
 import Home from './Home.jsx'
 import Signup from './Signup.jsx'
 import Login from './Login.jsx'
+import Task from './Task.jsx'
 
 class AppRoute extends React.Component {
 	constructor(props){
@@ -17,6 +18,7 @@ class AppRoute extends React.Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/task' component={Task} />
         </Switch>
         </BrowserRouter>
 			)

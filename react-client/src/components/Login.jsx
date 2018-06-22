@@ -20,6 +20,7 @@ class Login extends React.Component {
 		axios.post('login' , {username:username , 
 			password:password})
 		.then(function (res) {
+			window.location.href = '/task'
 			console.log(res)
 		})
 	}

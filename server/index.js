@@ -46,6 +46,7 @@ app.post('/login' , function (req , res) {
 			}else{
 				if(password === data.password){
 				console.log("done" , data);
+				res.sendStatus(202);
 				}else{
 					res.sendStatus(404);
 				}
