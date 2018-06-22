@@ -9,7 +9,26 @@ app.use(bodyParser.json());
 
 
 app.post('/signup' , function (req , res) {
-	console.log(req.body)
+  var username = req.body.username; 
+  var password = req.body.password; 
+  var email = req.body.email; 
+
+  db.User.find({username : username}, function (err , data) {
+  	if (err) {
+  		res.sendStatus(404) 
+  	}else{
+  		var user = new db.User({
+              username: username,
+              email: email,
+              password: password
+            }) 
+            user.save(function (err, data) {
+              if (err) {
+                throw err
+              }
+ 			})
+  		}
+  })
 })
 
 app.get('/*', (req, res) => {
