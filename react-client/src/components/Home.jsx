@@ -4,15 +4,15 @@ class Home extends React.Component {
     super(props)
     this.state = {}
 	}
-render(){
+ render(){
 	return (
 		<div>
-		<button>signup</button>
-		<button>login</button>
+		<a href='/signup'><button>signup</button></a>
+		<a href='/login'><button>login</button></a>
 		</div>
 
 		)
-}
+ }
 }
 
 export default Home
