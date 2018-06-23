@@ -13,6 +13,7 @@ class Task extends React.Component {
 		this.addTask = this.addTask.bind(this);
 		this.delete = this.delete.bind(this);
 		this.update = this.update.bind(this);
+		this.completed = this.completed.bind(this);
 	}
 	onChange(e){
 		 this.setState({
@@ -59,6 +60,15 @@ class Task extends React.Component {
 		})
 	}
 
+	completed(id){
+		axios.post('/completedTask',{id:id})
+		.then(function(res){
+			console.log(res)
+		}).catch(function (err) {
+			console.log(err)
+		})
+	}
+
 	render(){
 		return(
 			<div>
@@ -91,6 +101,9 @@ class Task extends React.Component {
 				<button onClick={
 					()=> this.update(item._id , this.state.newTask)
 				}>Update</button>
+				<button onClick={
+					()=> this.completed(item._id)
+				}>Compete !</button>
 				</div>
 			)
 			}

@@ -104,6 +104,18 @@ app.post('/updateTask' , function (req , res) {
 		}
 	})
 })
+
+app.post('/completedTask' , function (req , res) {
+	var id = req.body.id;
+	db.Task.findOneAndUpdate({_id : id} , {complete : true}, function (err , data) {
+		if (err){
+			throw err;
+		}else {
+			res.send(data);
+		}
+	})
+})
+
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
 }) 
