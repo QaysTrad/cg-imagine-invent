@@ -6,11 +6,13 @@ class Task extends React.Component {
 		super(props)
 		this.state = {
 			taskName:'' ,
-			tasks:''
+			tasks:'',
+			newTask:''
 		}
 		this.onChange = this.onChange.bind(this);
 		this.addTask = this.addTask.bind(this);
 		this.delete = this.delete.bind(this);
+		this.update = this.update.bind(this);
 	}
 	onChange(e){
 		 this.setState({
@@ -46,6 +48,17 @@ class Task extends React.Component {
 		})
 	}
 
+	update(id , newT){
+		axios.post('/updateTask' , {
+			id : id,
+			newTask : newT
+		}).then(function (res) {
+			console.log(res);
+		}).catch(function (err) {
+			console.log(err)
+		})
+	}
+
 	render(){
 		return(
 			<div>
@@ -71,7 +84,13 @@ class Task extends React.Component {
 				<button onClick={
 					()=> this.delete(item._id)
 				}>Delete</button>
-				<button>Update</button>
+				<h3>New Task</h3>
+				<input name='newTask'
+				onChange={this.onChange}
+				/>
+				<button onClick={
+					()=> this.update(item._id , this.state.newTask)
+				}>Update</button>
 				</div>
 			)
 			}
