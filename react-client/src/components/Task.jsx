@@ -10,6 +10,7 @@ class Task extends React.Component {
 		}
 		this.onChange = this.onChange.bind(this);
 		this.addTask = this.addTask.bind(this);
+		this.delete = this.delete.bind(this);
 	}
 	onChange(e){
 		 this.setState({
@@ -22,6 +23,7 @@ class Task extends React.Component {
 			complete : false
 		})
 		.then(function (res) {
+			window.location.reload()
 			console.log(res)
 		}).catch(function (err) {
         console.log(err)
@@ -33,6 +35,10 @@ class Task extends React.Component {
 	  .then(function(res){
 	  	x.setState({tasks : res.data})
 	  })
+	}
+
+	delete(id){
+		console.log(id)
 	}
 
 	render(){
@@ -47,19 +53,23 @@ class Task extends React.Component {
 				()=> this.addTask(this.state.taskName)
 			}>Add</button>
 			<div>
-			{this.state.tasks === '' ?(
+			{
+				this.state.tasks === '' ?(
 				<div>
 				<h2>Loding... </h2>
 				</div>
-
 				)
 			: this.state.tasks.map(item =>
 				<div key={item._id}>
 				<h3>{item.taskName} </h3>
 				<h3>{item.complete} </h3>
+				<button onClick={
+					()=> this.delete(item._id)
+				}>Delete</button>
+				<button>Update</button>
 				</div>
 			)
-		}
+			}
 			</div>
 			</div>
 			)
