@@ -2,6 +2,7 @@ let express = require('express')
 let path = require('path') 
 let db = require('../database/index') 
 let bodyParser = require('body-parser');
+let help = require('./utilities');
 
 const app = express() 
 app.use(express.static(path.join(__dirname, '../react-client/dist'))) 
@@ -26,6 +27,8 @@ app.post('/signup' , function (req , res) {
               if (err) {
                 throw err
               }
+              help.createSession(req, res, data.username) 
+
  			})
   		}
   })
@@ -45,8 +48,7 @@ app.post('/login' , function (req , res) {
 				res.sendStatus(404);
 			}else{
 				if(password === data.password){
-				console.log("done" , data);
-				res.sendStatus(202);
+              help.createSession(req, res, data.username) 
 				}else{
 					res.sendStatus(404);
 				}
