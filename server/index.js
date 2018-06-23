@@ -68,7 +68,9 @@ app.post('/addTask' , function (req , res) {
 
 	var task = new db.Task({
 		taskName : taskName ,
-		complete : complete
+		complete : complete , 
+    	username: req.session.user
+
 	})
 	task.save(function (err , data) {
 		if(err){
@@ -80,7 +82,7 @@ app.post('/addTask' , function (req , res) {
 })
 
 app.get('/tasks',function (req , res) {
-	db.Task.find({} , function (err , data) {
+	db.Task.find({username: req.session.user} , function (err , data) {
 		if (err){
 			throw err;
 		}else{
