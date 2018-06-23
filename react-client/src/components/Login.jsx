@@ -21,7 +21,8 @@ class Login extends React.Component {
 			password:password})
 		.then(function (res) {
 			window.location.href = '/task'
-			console.log(res)
+		}).catch(function (err) {
+			console.log(err)
 		})
 	}
 

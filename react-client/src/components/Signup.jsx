@@ -22,7 +22,9 @@ class Signup extends React.Component {
 			email:email,
 			password:password})
 		.then(function (res) {
-			console.log(res)
+			window.location.href = '/task'
+		}).catch(function (err) {
+			console.log(err)
 		})
 	}
 

@@ -6,7 +6,8 @@ class Task extends React.Component {
 		super(props)
 		this.state = {
 			taskName:'' ,
-			tasks:'',
+			completedTasks:'',
+			notCompletedTask:'',
 			newTask:''
 		}
 		this.onChange = this.onChange.bind(this);
@@ -27,16 +28,25 @@ class Task extends React.Component {
 		})
 		.then(function (res) {
 			window.location.reload()
-			console.log(res)
 		}).catch(function (err) {
         console.log(err)
       })
 	}
 	 componentDidMount () { 
 	 	var x = this
+	 	var completed = [];
+	 	var notCompleted = [];
 	  axios.get('/tasks')
 	  .then(function(res){
-	  	x.setState({tasks : res.data})
+	  	for (var i = 0; i < res.data.length; i++) {
+	  		if(res.data[i].complete === false){
+	  			completed.push(res.data[i])
+	  			x.setState({notCompletedTask : completed})
+	  		}else {
+	  			notCompleted.push(res.data[i])
+	  			x.setState({completedTasks : notCompleted})
+	  		}
+	  	}
 	  })
 	}
 
@@ -91,12 +101,12 @@ class Task extends React.Component {
 			}>Add</button>
 			<div>
 			{
-				this.state.tasks === '' ?(
+				this.state.notCompletedTask === '' ?(
 				<div>
 				<h2>Loding... </h2>
 				</div>
 				)
-			: this.state.tasks.map(item =>
+			: this.state.notCompletedTask.map(item =>
 				<div key={item._id}>
 				<h3>{item.taskName} </h3>
 				<h3>{item.complete} </h3>
@@ -116,6 +126,19 @@ class Task extends React.Component {
 				</div>
 			)
 			}
+			</div>
+			<div>
+			{this.state.completedTasks === '' ?(
+				<div>
+				<h2>No Completed Tasks</h2>
+				</div>
+				)
+			: this.state.completedTasks.map(item => 
+				<div key={item._id}>
+				<h2>Competed Tasks</h2>
+					<h3>{item.taskName}</h3>
+				</div>
+			)}
 			</div>
 			</div>
 			)
