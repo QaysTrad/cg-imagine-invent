@@ -7,22 +7,22 @@ import Login from './Login.jsx'
 import Task from './Task.jsx'
 
 class AppRoute extends React.Component {
-	constructor(props){
-		super(props);
-		this.state = { }
-	}
-	render (){
-		return (
-		<BrowserRouter history={hashHistory}>
+  constructor (props) {
+    super(props)
+    this.state = { }
+  }
+  render () {
+    return (
+      <BrowserRouter history={hashHistory}>
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/task' component={Task} />
         </Switch>
-        </BrowserRouter>
-			)
-	}
+      </BrowserRouter>
+    )
+  }
 }
 
 export default AppRoute
