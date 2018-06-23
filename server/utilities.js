@@ -1,8 +1,8 @@
 
 exports.createSession = function (req, res, newUser) {
-    req.session.regenerate(function () {
+  req.session.regenerate(function () {
     req.session.user = newUser
-    res.sendStatus(201) 
+    res.sendStatus(201)
   })
 }
 exports.isLoggedIn = function (req, res) {
