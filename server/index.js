@@ -2,12 +2,18 @@ let express = require('express')
 let path = require('path') 
 let db = require('../database/index') 
 let bodyParser = require('body-parser');
+let session = require('express-session');
+
 let help = require('./utilities');
 
 const app = express() 
 app.use(express.static(path.join(__dirname, '../react-client/dist'))) 
 app.use(bodyParser.json());
-
+app.use(session({
+  secret: 'very very secret', 
+  resave: true,
+  saveUninitialized: true
+})) 
 
 app.post('/signup' , function (req , res) {
   var username = req.body.username; 
@@ -28,7 +34,6 @@ app.post('/signup' , function (req , res) {
                 throw err
               }
               help.createSession(req, res, data.username) 
-
  			})
   		}
   })
@@ -117,6 +122,13 @@ app.post('/completedTask' , function (req , res) {
 		}
 	})
 })
+
+app.get('/logout' , function (req, res) {
+  req.session.destroy(function () { 
+    res.sendStatus(200); 
+  }) 
+})
+  
 
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
