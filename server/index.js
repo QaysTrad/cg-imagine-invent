@@ -83,12 +83,24 @@ app.get('/tasks',function (req , res) {
 })
 
 app.post('/deleteTask' , function (req , res) {
-	var id = req.body.id
+	var id = req.body.id;
 	db.Task.findOneAndRemove({_id : id} , function (err , data) {
 		if (err){
 			throw err;
 		}else{
 			res.sendStatus(201);
+		}
+	})
+})
+
+app.post('/updateTask' , function (req , res) {
+	var id = req.body.id;
+	var newTask = req.body.newTask;
+	db.Task.findOneAndUpdate({_id : id} , {taskName : newTask}, function (err , data) {
+		if (err){
+			throw err;
+		}else {
+			res.send(data);
 		}
 	})
 })
