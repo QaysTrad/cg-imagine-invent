@@ -38,7 +38,12 @@ class Task extends React.Component {
 	}
 
 	delete(id){
-		console.log(id)
+		axios.post('/deleteTask',{id:id})
+		.then(function(res){
+			console.log(res)
+		}).catch(function (err) {
+			console.log(err)
+		})
 	}
 
 	render(){
