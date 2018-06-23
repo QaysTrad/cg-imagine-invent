@@ -69,9 +69,18 @@ class Task extends React.Component {
 		})
 	}
 
+	logout(){
+		axios.get('/logout')
+	   .then(function (res) {
+        window.location.href = '/'
+      }).catch(function (err) {
+        console.log('logout err ', err)
+      })
+	}
 	render(){
 		return(
 			<div>
+			<button onClick={this.logout}>logout</button>
 			<h1>Task</h1>
 			<h3>Add Task</h3>
 			<input name='taskName'
