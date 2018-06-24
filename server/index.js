@@ -65,9 +65,11 @@ app.post('/login', function (req, res) {
 app.post('/addTask', function (req, res) {
   var taskName = req.body.taskName
   var complete = req.body.complete
+  var date = req.body.date
 
   var task = new db.Task({
     taskName: taskName,
+    date:date,
     complete: complete,
     	username: req.session.user
 

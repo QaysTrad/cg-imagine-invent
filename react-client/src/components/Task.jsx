@@ -165,7 +165,7 @@ class Task extends React.Component {
 
       <div className='dropdown'>
                                         <button className='btn bmd-btn-icon dropdown-toggle' type='button' id='ex1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-          <span class='glyphicon glyphicon-option-vertical' aria-hidden='true' />
+          <span className='glyphicon glyphicon-option-vertical' aria-hidden='true' />
         </button>
                                         <div className='dropdown-menu dropdown-menu-left' aria-labelledby='ex1'>
           <button className='dropdown-item btn '
@@ -186,6 +186,7 @@ class Task extends React.Component {
                                       </div>
 
       <h3>{item.taskName} </h3>
+      <h3>{item.date} </h3>
     </div>
                                   </div>
                                 )
