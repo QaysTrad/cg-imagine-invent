@@ -21,6 +21,7 @@ var user = mongoose.Schema({
 var task = mongoose.Schema({
   taskName: {type: String, required: true},
   complete: {type: Boolean },
+  date: {type: Date},
   username: {type: String }
 })
 
