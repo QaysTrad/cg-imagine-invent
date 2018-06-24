@@ -6,6 +6,7 @@ class Task extends React.Component {
     super(props)
     this.state = {
       taskName: '',
+      date:'',
       completedTasks: '',
       notCompletedTask: '',
       newTask: ''
@@ -21,9 +22,10 @@ class Task extends React.Component {
       [e.target.name]: e.target.value
     })
   }
-  addTask (taskName) {
+  addTask (taskName , date) {
     axios.post('addTask', {
       taskName: taskName,
+      date:date,
       complete: false
     })
       .then(function (res) {
@@ -109,10 +111,15 @@ class Task extends React.Component {
                 type='text'
                 className='form-control'
               />
+              <input name='date'
+                onChange={this.onChange}
+                type='Date'
+                className='form-control'
+              />
               <button type='button'
                 className='btn btn-raised btn-info'
                 onClick={
-                  () => this.addTask(this.state.taskName)
+                  () => this.addTask(this.state.taskName , this.state.date)
                 }>Add</button>
               <br />
               <br />
